@@ -138,7 +138,6 @@ def graph(df, filename):
     ax2.tick_params(axis='both', which='major', labelsize=30)
     ax2.legend(loc=1, fontsize='xx-large')
     
-
     plt.show()
 
     fig.savefig(filename+'.jpg', bbox_inches='tight')
