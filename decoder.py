@@ -68,6 +68,9 @@ def df_data(vol, cur):
             present_vol.append(vol[n])
             present_cur.append(cur[n])
 
+    target_vol, present_vol = lesser(target_vol, present_vol)
+    target_cur, present_cur = lesser(target_cur, present_cur)
+
     df = pd.DataFrame(
         data={'present_voltage':present_vol, 'present_current':present_cur, 'target_voltage':target_vol, 'target_current':target_cur}
         )
