@@ -97,7 +97,7 @@ def graph(df, filename):
     plt.grid(visible=True)
 
     # Setting Axis Labels and Size
-    plt.xlabel('Frames', fontsize=40)
+    # plt.xlabel('Frames', fontsize=40)
     plt.ylabel('Voltage (V)', fontsize=40)
 
     # Graphing both Voltage values
@@ -155,7 +155,7 @@ def graph_kw(df, filename):
         color='magenta'
     )
     plt.title('Charging Rate over Time (kW)')
-    plt.xlabel('Frames')
+    # plt.xlabel('Frames')
     plt.ylabel('Power (kW)')
     
     plt.savefig(filename+'.jpg', bbox_inches='tight')
