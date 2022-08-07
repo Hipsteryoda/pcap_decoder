@@ -14,11 +14,11 @@ then
     # Decode pcap into text file
     tshark -V -r data/$filename > ./pcaps/$filename.txt
 
-    # # Run python decoder over file
-    # ./decoder.py $filename.txt
+    # Run python decoder over file
+    ./decoder.py $filename.txt
 
-    # # Remove txt file
-    # rm $filename.txt
+    # Remove txt file
+    rm $filename.txt
 
 else
     echo "File does not exist"
