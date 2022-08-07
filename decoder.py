@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 ### MODULE IMPORTS ###
-from shutil import which
+# from shutil import which
 import pandas as pd
 import numpy as np 
 
@@ -10,7 +10,7 @@ import re
 
 # Plotting stuff
 import matplotlib.pyplot as plt
-import seaborn as sns
+# import seaborn as sns
 
 # Accepting CLI input
 import sys, os
