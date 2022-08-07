@@ -12,13 +12,18 @@ then
     unzip $fullfile
 
     # Decode pcap into text file
+    echo "Decoding pcap into text file"
     tshark -V -r data/$filename > ./pcaps/$filename.txt
 
     # Run python decoder over file
+    echo "Analyzing and graphing stuff"
     ./decoder.py $filename.txt
 
     # Remove txt file
-    rm $filename.txt
+    echo "Cleanup time"
+    # rm -rf ./data/* ./pcaps/$filename.txt
+    
+    echo "All set"
 
 else
     echo "File does not exist"

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 ### MODULE IMPORTS ###
+from shutil import which
 import pandas as pd
 import numpy as np 
 
@@ -12,7 +13,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Accepting CLI input
-import sys
+import sys, os
 
 ### FUNCTION DEFINITIONS ###
 
@@ -70,23 +71,39 @@ def df_data(vol, cur):
     df = pd.DataFrame(
         data={'present_voltage':present_vol, 'present_current':present_cur, 'target_voltage':target_vol, 'target_current':target_cur}
         )
+    # Cleanup for missing values
+    df = df.replace('', np.NaN)
+    
+    df = df.astype(float)
 
     return df
 
-def graph(df):
+def graph(df, filename):
     fig, ax = plt.subplots(figsize=(70,40), frameon=True)
     plt.axis(True)
+
+    # Setting Axis Labels and Size
+    plt.xlabel('Frames', fontsize=40)
+    plt.ylabel('Voltage (V)', fontsize=40)
 
     ax.plot(df['present_voltage'], label='Present Voltage', color='red')
     ax.plot(df['target_voltage'], label='Target Voltage', color='orange')
 
+    ax.tick_params(axis='both', which='major', labelsize=30)
+
     ax2 = ax.twinx()
+    ax2.set_yticks(range(200))
     ax2.plot(df['present_current'], label='Present Current', color='green')
     ax2.plot(df['target_current'], label='Target Current', color='blue')
 
+    ax2.tick_params(axis='both', which='major', labelsize=30)
+
+    # Show the legend on the graph
+    plt.legend()
+
     plt.show()
 
-    fig.savefig('plot.jpg', bbox_inches='tight')
+    fig.savefig(filename+'.jpg', bbox_inches='tight')
 
 
 ### RUN ###
@@ -94,12 +111,12 @@ def graph(df):
 # TODO: Support passing of multiple files to script
 file = sys.argv[1]
 
-vol, cur = parse(file)
+vol, cur = parse('./pcaps/'+file)
 if len(vol) == 0 or len(cur) == 0:
     print(f'This session ({file}) did not make it to current demand.\n')
 else:
     vol, cur = lesser(vol, cur)
     df = df_data(vol, cur)
-    graph(df)
+    graph(df, file)
 
 
