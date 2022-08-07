@@ -13,7 +13,7 @@ then
 
     # Decode pcap into text file
     echo "Decoding pcap into text file"
-    tshark -V -r data/$filename > ./pcaps/$file.txt
+    tshark -V -r data/$file > ./pcaps/$file.txt
 
     # Run python decoder over file
     echo "Analyzing and graphing stuff"
