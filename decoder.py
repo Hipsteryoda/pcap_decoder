@@ -76,34 +76,81 @@ def df_data(vol, cur):
     
     df = df.astype(float)
 
+    # Calculate present power 
+    v = df.present_voltage.to_numpy()
+    i = df.present_current.to_numpy()
+
+    # Power in kW
+    p = (v * i) / 1000
+
+    df['present_power'] = p
+
     return df
 
 def graph(df, filename):
+    
     fig, ax = plt.subplots(figsize=(70,40), frameon=True)
     plt.axis(True)
+    plt.grid(visible=True)
 
     # Setting Axis Labels and Size
     plt.xlabel('Frames', fontsize=40)
     plt.ylabel('Voltage (V)', fontsize=40)
 
-    ax.plot(df['present_voltage'], label='Present Voltage', color='red')
-    ax.plot(df['target_voltage'], label='Target Voltage', color='orange')
+    # Graphing both Voltage values
+    ax.plot(
+        df['present_voltage'], 
+        label='Present Voltage', 
+        color='red', 
+        linewidth=5
+        )
+    ax.plot(
+        df['target_voltage'], 
+        label='Target Voltage', 
+        color='orange', 
+        linewidth=5
+        )
 
     ax.tick_params(axis='both', which='major', labelsize=30)
+    ax.legend(loc=2, fontsize='large')
 
+    # Graphing both Current values
     ax2 = ax.twinx()
-    ax2.set_yticks(range(200))
-    ax2.plot(df['present_current'], label='Present Current', color='green')
-    ax2.plot(df['target_current'], label='Target Current', color='blue')
+    ax2.plot(
+        df['present_current'], 
+        label='Present Current', 
+        color='green', 
+        linewidth=5
+        )
+    ax2.plot(
+        df['target_current'], 
+        label='Target Current', 
+        color='blue', 
+        linewidth=5
+        )
 
     ax2.tick_params(axis='both', which='major', labelsize=30)
-
-    # Show the legend on the graph
-    plt.legend()
+    ax2.legend(loc=1, fontsize='xx-large')
+    
 
     plt.show()
 
     fig.savefig(filename+'.jpg', bbox_inches='tight')
+
+def graph_kw(df, filename):
+    # Define data to graph
+    p = df.present_power
+
+    # Create graph and labels
+    plt.plot(
+        p,
+        color='magenta'
+    )
+    plt.title('Charging Rate over Time (kW)')
+    plt.xlabel('Frames')
+    plt.ylabel('Power (kW)')
+    
+    plt.savefig(filename+'.jpg', bbox_inches='tight')
 
 
 ### RUN ###
@@ -118,5 +165,6 @@ else:
     vol, cur = lesser(vol, cur)
     df = df_data(vol, cur)
     graph(df, file)
+    graph_kw(df, file+'_present_power')
 
 
