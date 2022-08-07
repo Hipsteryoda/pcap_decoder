@@ -3,7 +3,7 @@
 fullfile=${1}
 filename=$(basename -- "$fullfile")
 extension="${filename##*.}"
-filename="${filename%.*}"
+file="${filename%.*}"
 
 # If the file exists
 if [[ -e $1 ]]
@@ -13,11 +13,11 @@ then
 
     # Decode pcap into text file
     echo "Decoding pcap into text file"
-    tshark -V -r data/$filename > ./pcaps/$filename.txt
+    tshark -V -r data/$filename > ./pcaps/$file.txt
 
     # Run python decoder over file
     echo "Analyzing and graphing stuff"
-    ./decoder.py $filename.txt
+    ./decoder.py $file.txt
 
     # Remove txt file
     echo "Cleanup time"

@@ -102,17 +102,20 @@ def graph(df, filename):
         df['present_voltage'], 
         label='Present Voltage', 
         color='red', 
-        linewidth=5
+        linewidth=4
         )
+    # Make target values thinner lines and dashed for easier visual differentiation
     ax.plot(
         df['target_voltage'], 
         label='Target Voltage', 
         color='orange', 
-        linewidth=5
+        linewidth=2,
+        linestyle='--'
         )
 
+    # Set tick paramaters and set legend
     ax.tick_params(axis='both', which='major', labelsize=30)
-    ax.legend(loc=2, fontsize='large')
+    ax.legend(loc=2, fontsize='xx-large')
 
     # Graphing both Current values
     ax2 = ax.twinx()
@@ -120,15 +123,18 @@ def graph(df, filename):
         df['present_current'], 
         label='Present Current', 
         color='green', 
-        linewidth=5
+        linewidth=4
         )
+    # Make target values thinner lines and dashed for easier visual differentiation
     ax2.plot(
         df['target_current'], 
         label='Target Current', 
         color='blue', 
-        linewidth=5
+        linewidth=2,
+        linestyle='--'
         )
 
+    # Set tick paramaters and set legend for second axis
     ax2.tick_params(axis='both', which='major', labelsize=30)
     ax2.legend(loc=1, fontsize='xx-large')
     
