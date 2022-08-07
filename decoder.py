@@ -44,7 +44,7 @@ def lesser(list1, list2):
     
     # if list 2 is loger, truncate list 2 to the length of list 1
     elif list1 < list2:
-        list2 = list2[:len[list1]]
+        list2 = list2[:len(list1)]
 
     # else, do nothing
     else:
