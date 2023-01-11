@@ -12,7 +12,7 @@ Paramaters:
 
 ### Linux
 
-NOTE: If the wireshark-v2g plugin is not properly installed and decoding pcaps correctly, you will get `This session ({file}) did not make it to current demand.` everytime.
+NOTE: If the wireshark-v2g plugin is not properly installed and decoding pcaps correctly, you will get `This session ({file}) did not make it to current demand.` everytime.\
 NOTE2: If you already have a decoded pcap file in a .txt format, you can simply use `decode.py <file>` to get graphical representations of the session.
 1. Install requirements with `pip install -r requirements.txt`
 2. Place pcaps into `pcaps` directory (in original zipped format)
