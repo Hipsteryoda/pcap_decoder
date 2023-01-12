@@ -98,7 +98,8 @@ def graph(df, filename):
 
     # Setting Axis Labels and Size
     # plt.xlabel('Frames', fontsize=40)
-    plt.ylabel('Voltage (V)', fontsize=40)
+    plt.xlabel('Time since Current Demand Start (sec)', fontsize=30)
+    plt.ylabel('Voltage (V)', fontsize=30)
 
     # Graphing both Voltage values
     ax.plot(
