@@ -17,7 +17,7 @@ if [[ -e $1 ]]
 
         # Run python decoder over file
         echo "Analyzing and graphing stuff"
-        ./decoder.py $file.txt
+        python3 decoder.py $file.txt
 
         # Remove txt file
         echo "Cleanup time"
